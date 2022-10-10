@@ -1,0 +1,6 @@
+C:\Users\DELL\Documents\TEC\5 Semestre\Admin Base de Datos\Proyectos\Solucion Permisos Usuario\EntidadPermisos\bin\Debug\EntidadPermisos.dll
+C:\Users\DELL\Documents\TEC\5 Semestre\Admin Base de Datos\Proyectos\Solucion Permisos Usuario\EntidadPermisos\bin\Debug\EntidadPermisos.pdb
+C:\Users\DELL\Documents\TEC\5 Semestre\Admin Base de Datos\Proyectos\Solucion Permisos Usuario\EntidadPermisos\obj\Debug\EntidadPermisos.csproj.AssemblyReference.cache
+C:\Users\DELL\Documents\TEC\5 Semestre\Admin Base de Datos\Proyectos\Solucion Permisos Usuario\EntidadPermisos\obj\Debug\EntidadPermisos.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\TEC\5 Semestre\Admin Base de Datos\Proyectos\Solucion Permisos Usuario\EntidadPermisos\obj\Debug\EntidadPermisos.dll
+C:\Users\DELL\Documents\TEC\5 Semestre\Admin Base de Datos\Proyectos\Solucion Permisos Usuario\EntidadPermisos\obj\Debug\EntidadPermisos.pdb

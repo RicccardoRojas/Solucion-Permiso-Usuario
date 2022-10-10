@@ -10,7 +10,7 @@ namespace AccesoDatosPermisos
         Base b = new Base("localhost","root","","permisos");
         public void Borrar(dynamic Entidad)
         {
-            b.Comando(string.Format("call deleteusuarios({0})",Entidad.IDUsuario));
+            b.Comando(string.Format("call deleteusuario({0})",Entidad.IDUsuario));
         }
 
         public void Guardar(dynamic Entidad)
@@ -23,6 +23,11 @@ namespace AccesoDatosPermisos
         public DataSet Mostrar(string filtro)
         {
             return b.Obtener(string.Format("call showusuarios('%{0}%')",filtro),"Usuarios");
+        }
+
+        public DataSet Mostrar2()
+        {
+            return b.Obtener("call showusuarios2()", "Usuarios");
         }
     }
 }

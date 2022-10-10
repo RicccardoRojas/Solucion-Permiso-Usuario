@@ -158,6 +158,7 @@ END if;
 END if;
 END;;
 
+
 delimiter $$
 DROP PROCEDURE if EXISTS deleteusuario;
 CREATE PROCEDURE deleteusuario(
@@ -178,9 +179,19 @@ us.apellidom AS Apellido_Materno, us.fechanacimiento AS Fecha_Nacimiento, us.rfc
 us.modulo AS Modulo, us.puesto AS Puesto FROM usuarios us WHERE nombre LIKE _nombre ORDER BY nombre;
 END;;
 
+delimiter $$
+DROP PROCEDURE if EXISTS showusuarios2;
+CREATE PROCEDURE showusuarios2(
+)
+BEGIN
+SELECT us.idusuario AS Num_Usuario, CONCAT(us.nombre,' ',us.apellidop) AS Nombre_Completo 
+FROM usuarios us ORDER BY Nombre_Completo;
+END;;
+
 CALL insertusuarios('Giovanni','Rojas','Garcia','2002/02/07','0714DBJJHF','Taller','Obrero',-1);
 CALL showusuarios('%');
 CALL deleteusuario(2);
+CALL showusuarios2();
 
 
 #FIN Tabla Usuarios y Almacenados/////////////////////////////////////////////////////////////////////////////////////
@@ -201,10 +212,14 @@ IN _contraseña VARCHAR(10),
 IN _idlogin INT
 )
 BEGIN
-if _idlogin<0 then
+DECLARE X INT;
+SELECT COUNT(*) FROM login WHERE idlogin = _idlogin INTO X;
+if X=0 AND _idlogin<0 then
 INSERT INTO login VALUES (NULL,_fkidusuario,_contraseña);
-if _idlogin>0 then
-UPDATE login SET contraseña = _contraseña;
+ELSE IF X=0 AND _idlogin>0 then
+UPDATE login SET constraseña = _contraseña WHERE idlogin = _idlogin;
+ELSE
+UPDATE login SET constraseña = _contraseña WHERE idlogin = _idlogin;
 END if;
 END if;
 END;;
@@ -224,14 +239,30 @@ CREATE PROCEDURE showlogin(
 IN _nombre VARCHAR(50)
 )
 BEGIN
-SELECT lo.idlogin AS Num_Login, us.nombre AS Nombre, us.apellidop AS Apellido_Paterno,
+SELECT lo.idlogin AS Num_Login, CONCAT(us.nombre,' ',us.apellidop) AS Usuario,
 lo.`constraseña` AS Contraseña FROM login lo, usuarios us WHERE lo.fkidusuario = us.idusuario AND us.nombre LIKE _nombre
 ORDER BY nombre;
 END;;
 
-CALL insertlogin(3,'jfijiodJDA',-1);
+CALL insertlogin(9,'HOLA',9);
 CALL showlogin('%');
-CALL deletelogin(2);
+CALL deletelogin(8);
 
 #FIN Tabla Login y Almacenados/////////////////////////////////////////////////////////////////////////////////////
+
+delimiter $$
+DROP PROCEDURE if EXISTS validar;
+CREATE PROCEDURE validar(
+IN _Nombre VARCHAR(100),
+IN _Contraseña VARCHAR(15)
+)
+BEGIN
+SELECT CONCAT(us.nombre,' ',us.apellidop) AS Usuario, lo.`constraseña` AS Contrasena, us.modulo AS Modulo, us.puesto AS Puesto
+FROM login lo, usuarios us WHERE lo.fkidusuario = us.idusuario AND _Nombre = 
+CONCAT(us.nombre,' ',us.apellidop) AND _Contraseña = lo.`constraseña`;
+END;;
+
+CALL validar('Fernanda Duran','24ffsd');
+
+CALL validar('Amelia Garcia','MADRE');
 

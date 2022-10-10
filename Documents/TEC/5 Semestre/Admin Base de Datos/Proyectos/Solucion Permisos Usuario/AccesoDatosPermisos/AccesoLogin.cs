@@ -23,5 +23,10 @@ namespace AccesoDatosPermisos
         {
             return b.Obtener(string.Format("call showlogin('%{0}%')",filtro),"Login");
         }
+
+        public DataSet Validar(string text1, string text2)
+        {
+            return b.Obtener(string.Format("call validar('{0}','{1}')",text1,text2),"Login");
+        }
     }
 }

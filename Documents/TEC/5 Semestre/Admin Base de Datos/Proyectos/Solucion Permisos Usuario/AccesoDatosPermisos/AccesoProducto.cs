@@ -16,8 +16,8 @@ namespace AccesoDatosPermisos
 
         public void Guardar(dynamic Entidad)
         {
-            b.Comando(string.Format("call insertproducto('{0}','{1}','{2}',{3})",Entidad.Nombre, Entidad.Descripcion,
-                Entidad.Marca, Entidad.CodigoBarras));
+            b.Comando(string.Format("call insertproducto({0},'{1}','{2}','{3}')",Entidad.CodigoBarras, Entidad.Nombre,
+                Entidad.Descripcion, Entidad.Marca));
         }
 
         public DataSet Mostrar(string filtro)
